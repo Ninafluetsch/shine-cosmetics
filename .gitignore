@@ -1,0 +1,14 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# VS Code Einstellungen
+.vscode/
+
+#Tools
+node_modules/
+npm-debug.log
+.sass-cache/
+
+# WordPress-spezifisch
+*.log
