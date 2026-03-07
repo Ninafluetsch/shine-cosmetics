@@ -17,41 +17,55 @@ get_header();
 
 	<main id="primary" class="site-main">
 
-		<?php
-		if ( have_posts() ) :
+    <section id="ueber-uns" class="page-section">
+                <p>Seiten</p>
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+        <?php 
+        $about_query = new WP_Query('pagename=ueber-uns'); // Slug der Seite
+        while ( $about_query->have_posts() ) : $about_query->the_post(); ?>
+            <div class="container">
+                <h2><?php the_title(); ?></h2>
+                <?php the_content(); ?>
+            </div>
+        <?php endwhile; wp_reset_postdata(); ?>
+    </section>
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+    <section id="angebot" class="page-section gray-bg">
+        <div class="container">
+            <h2>Angebot</h2>
+            <div class="angebot-grid">
+                <?php 
+                $angebot_query = new WP_Query(array('category_name' => 'angebot', 'posts_per_page' => -1));
+                if ( $angebot_query->have_posts() ) : 
+                    while ( $angebot_query->have_posts() ) : $angebot_query->the_post(); ?>
+                        <article class="angebot-item">
+                            <h3><?php the_title(); ?></h3>
+                            <?php the_excerpt(); ?>
+                        </article>
+                    <?php endwhile; 
+                endif; wp_reset_postdata(); ?>
+            </div>
+        </div>
+    </section>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+    <section id="gutscheine" class="page-section">
+        <?php 
+        $voucher_query = new WP_Query('pagename=gutscheine');
+        while ( $voucher_query->have_posts() ) : $voucher_query->the_post(); ?>
+            <div class="container">
+                <h2><?php the_title(); ?></h2>
+                <?php the_content(); ?>
+            </div>
+        <?php endwhile; wp_reset_postdata(); ?>
+    </section>
 
-			endwhile;
+    <section id="kontakt" class="page-section">
+        <div class="container">
+            <h2>Kontakt</h2>
+        </div>
+    </section>
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
+</main>
 
 <?php
-get_sidebar();
 get_footer();
