@@ -1,19 +1,12 @@
 <?php
+add_action( 'wp_enqueue_scripts', 'shine_cosmetics_scripts' );
+add_action( 'wp_enqueue_scripts', 'svg_scroll_animation' );
+add_action( 'after_setup_theme', 'shine_cosmetics_setup' );
+
 function shine_cosmetics_scripts() {
     wp_enqueue_style( 'shine-cosmetics-main', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
     wp_enqueue_script( 'shine-cosmetics-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
 }
-add_action( 'wp_enqueue_scripts', 'shine_cosmetics_scripts' );
-
-function shine_cosmetics_setup() {
-    register_nav_menus( array(
-        'menu-1' => esc_html__( 'Primary', 'shine-cosmetics' ),
-    ) );
-    add_theme_support( 'title-tag' );
-    add_theme_support( 'custom-logo' );
-}
-add_action( 'after_setup_theme', 'shine_cosmetics_setup' );
-
 function svg_scroll_animation() {
     wp_enqueue_script(
         'svg-scroll-animation',
@@ -23,4 +16,16 @@ function svg_scroll_animation() {
         true
     );
 }
-add_action('wp_enqueue_scripts', 'svg_scroll_animation');
+function shine_cosmetics_setup() {
+    register_nav_menus( array(
+        'menu-1' => esc_html__( 'Primary', 'shine-cosmetics' ),
+    ) );
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'custom-logo' );
+        add_theme_support('custom-header', array(
+        'width'        => 1920,
+        'height'       => 400,
+        'flex-width'   => true,
+        'flex-height'  => true,
+    ));
+}

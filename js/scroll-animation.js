@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     path.style.strokeDashoffset = length;
   });
 
-  const startScroll = 200; // px, ab wann Animation startet
-  const endScroll = 600; // px, wann sie endet
+  const startScroll = 0; // px, ab wann Animation startet (späterer Start)
+  const endScroll = 300; // px, wann sie endet
 
   window.addEventListener("scroll", function () {
     const scrollY = window.scrollY;
@@ -24,4 +24,29 @@ document.addEventListener("DOMContentLoaded", function () {
       path.style.strokeDashoffset = length - drawLength;
     });
   });
+
+  const svgBg = document.querySelector(".svg-bg");
+  if (!svgBg) return;
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Starte hier deine Animation
+          startSvgAnimation();
+          observer.disconnect(); // Nur einmal ausführen
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.1, // 10% sichtbar reicht
+    },
+  );
+
+  observer.observe(svgBg);
 });
+
+function startSvgAnimation() {
+  // Hier kommt dein Animationscode rein
+}

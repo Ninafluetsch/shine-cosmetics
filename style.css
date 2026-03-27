@@ -41,16 +41,39 @@ a:hover {
   color: var(--green-color);
 }
 
-/*zur Übersicht */
-
 .site-header {
-  background-color: #8f6060;
-  min-height: 80px;
+  position: fixed;
+  width: 90%;
+  z-index: 100;
+  background: #8e3838;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  top: 0;
+}
+
+.main-navigation ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+/* Mobile Button verstecken auf Desktop */
+.menu-toggle {
+  display: none;
+}
+
+/* Seite nach unten schieben damit Header sie nicht überdeckt */
+#primary {
+  margin-top: 70px;
 }
 
 .page-section {
+  display: flex;
+  justify-content: space-between; /* optional, für Abstand */
+  align-items: flex-start; /* optional, für vertikale Ausrichtung */
   background-color: gainsboro;
-  position: relative;
   z-index: 1;
 }
 
@@ -58,12 +81,17 @@ a:hover {
   background-color: lightblue;
 }
 
-.site-footer {
-  background-color: lightgoldenrodyellow;
+.container-left {
+  width: 40vw;
+}
+.container-right {
+  width: 40vw;
+  right: 0;
+  margin-left: auto;
 }
 
-.ueber-uns-text {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.site-footer {
+  background-color: lightgoldenrodyellow;
 }
 
 .svg-scroll {
@@ -83,4 +111,10 @@ a:hover {
   stroke: #1d1d1b;
   stroke-width: 6px;
   stroke-miterlimit: 10;
+}
+
+.header-image-wrap img {
+  height: 200px;
+  width: auto;
+  object-fit: cover; /* falls das Bild gestreckt wird */
 }
