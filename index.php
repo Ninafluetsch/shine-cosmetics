@@ -30,37 +30,39 @@ get_header();
         <div class='container-left'>
             <div class='angebot-grid'>
                 <?php
-                $voucher_query = new WP_Query('pagename=angebot');
-                while ($voucher_query->have_posts()):
-                    $voucher_query->the_post();
+                // Seite "Angebot" – Titel + Content (enthält H1-Blöcke, Paragraphen, Buttons)
+                $page_query = new WP_Query('pagename=angebot');
+                while ($page_query->have_posts()):
+                    $page_query->the_post();
                     ?>
                     <div class='container'>
-                        <h2>
-                            <?php the_title();
-                            ?>
-                        </h2>
-                        <?php the_content();
-                        ?>
+                        <h2><?php the_title(); ?></h2>
+                        <?php the_content(); ?>
                     </div>
                 <?php endwhile;
+                wp_reset_postdata();
                 ?>
-                <?php
-                $angebot_query = new WP_Query(array('category_name' => 'angebot', 'posts_per_page' => -1));
+
+                 <?php
+                // Posts der Kategorie "angebot" 
+                // data-title wird für das Matching mit dem Button-Text verwendet
+                $angebot_query = new WP_Query(array(
+                    'category_name' => 'angebot',
+                    'posts_per_page' => -1
+                ));
                 if ($angebot_query->have_posts()):
                     while ($angebot_query->have_posts()):
                         $angebot_query->the_post();
                         ?>
-
-                        <article class='angebot-item'>
-                            <h3>
-                                <?php the_title();
-                                ?>
-                            </h3>
-                            <?php the_excerpt();
-                            ?>
+                        <article
+                            class='angebot-item'
+                            data-title='<?php echo esc_attr(get_the_title()); ?>'
+                            style='display: none;'
+                        >
+                            <h3><?php the_title(); ?></h3>
+                            <?php the_content(); ?>
                         </article>
                     <?php endwhile;
-
                 endif;
                 wp_reset_postdata();
                 ?>

@@ -7,6 +7,20 @@ function shine_cosmetics_scripts() {
     wp_enqueue_style( 'shine-cosmetics-main', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
     wp_enqueue_script( 'shine-cosmetics-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
 }
+ 
+function theme_enqueue_scripts() {
+    wp_enqueue_script(
+        'btn-toggle',
+        get_template_directory_uri() . '/js/btn-toggle.js',
+        array(), // keine Abhängigkeiten (kein jQuery nötig)
+        '1.0.0',
+        true // im Footer laden (wichtig: DOM muss geladen sein)
+    );
+}
+
+add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
+ 
+
 function svg_scroll_animation() {
     wp_enqueue_script(
         'svg-scroll-animation',

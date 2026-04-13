@@ -76,6 +76,12 @@ a:hover {
   z-index: 1;
 }
 
+.angebot-item {
+  background-color: #f2e0e0; /* dein Rosa */
+  padding: 1.5rem;
+  margin-top: -1em; /* klebt direkt am Button */
+}
+
 .widget-area {
   background-color: lightblue;
 }
