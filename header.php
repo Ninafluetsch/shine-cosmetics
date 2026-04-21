@@ -22,39 +22,31 @@
 
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
-	<?php if (get_header_image()) : ?>
-    <div class="header-image-wrap">
-        <img 
-            src="<?php header_image(); ?>" 
-            width="<?php echo get_custom_header()->width; ?>" 
-            height="<?php echo get_custom_header()->height; ?>"
-            alt="<?php bloginfo('name'); ?>"
-        >
-    </div>
-<?php endif; ?>
-	<div id="page" class="site">
-		<a class="skip-link screen-reader-text"
-			href="#primary"><?php esc_html_e('Skip to content', 'shine-cosmetics'); ?></a>
 
-		<header class="site-header">
-			<!-- <p>HEADER</p> -->
-			<div class="site-branding">
-				<?php the_custom_logo(); ?>
-				<p class="site-title">
-					<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-						<?php bloginfo('name'); ?>
-					</a>
-				</p>
-			</div><!-- .site-branding -->
+    <header class="site-header">
+		<?php if (get_header_image()) : ?>
+			<div class="header-hero">
+				<img class="hero-bg" src="<?php header_image(); ?>" alt="<?php bloginfo('name'); ?>">
+				<div class="hero-text-overlay">
+					<span class="hero-text-1">SHINE</span>
+                    <span class="hero-text-2">COSMETICS</span>
+				</div>
+				<div class="hero-logo-wrap">
+                    <?php the_custom_logo(); ?>
+                </div>
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                    <span class="hamburger-icon"></span> ☰
+                </button>
+			</div>
+		<?php endif; ?>
+		<nav id="site-navigation" class="main-navigation">
 
-			<nav id="site-navigation" class="main-navigation">
-				<?php
-				wp_nav_menu(array(
-					'theme_location' => 'menu-1',
-					'menu_id' => 'primary-menu',
-				));
-				?>
-			</nav><!-- #site-navigation -->
-		</header><!-- #masthead -->
-	</div>
+			<?php
+			wp_nav_menu(array(
+				'theme_location' => 'menu-1',
+				'menu_id' => 'primary-menu',
+			));
+			?>
+		</nav>
+	</header>
 </body>

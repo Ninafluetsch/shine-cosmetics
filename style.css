@@ -1,8 +1,8 @@
 /* Grundlegende Farbvariablen */
 :root {
   --color-green: #7d9174;
-  --color-pink: #93797a;
-  --color-beige: #b9ab98;
+  --color-plum: #93797a;
+  --color-rose: #bda7a8;
   --text-color: #242424;
 }
 
@@ -14,9 +14,11 @@ body {
 
 h1,
 .h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #b0aeae;
 }
 
 h2,
@@ -38,32 +40,146 @@ a {
 }
 
 a:hover {
-  color: var(--green-color);
+  color: var(--color-plum);
 }
 
-.site-header {
-  position: fixed;
-  width: 90%;
-  z-index: 100;
-  background: #8e3838;
+/* -- Hero Container --*/
+.header-hero {
+  position: relative;
+  width: 100%;
+  height: 33.33vh; /* 1/3 der Bildschirmhöhe */
+  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
+  justify-content: center;
+}
+
+/* Das 20% Overlay */
+.header-hero::after {
+  content: "";
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(93, 86, 76, 0.8); /* 0.2 entspricht 20% Schwarz */
+  z-index: 2; /* Liegt über dem Bild (Z-Index 1) */
+}
+
+/* Hintergrundbild auf volle Breite/Höhe trimmen */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-text-overlay {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-text-1 {
+  font-size: 30vw;
+  font-weight: 900;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+}
+.hero-text-2 {
+  font-size: 16vw;
+  font-weight: 900;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+}
+
+/* Zentriertes Logo */
+.hero-logo-wrap {
+  position: relative;
+  z-index: 3;
+  width: 25%;
+  height: auto;
+}
+
+.hero-logo-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.main-navigation {
+  display: none;
+}
+
+/* Mobile Button zeigen */
+.menu-toggle {
+  display: block;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
+  font-size: 2em;
+}
+
+/* Mobile: Navigation anzeigen wenn toggled */
+.main-navigation.toggled {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.9);
+  padding-top: 2em;
+  z-index: 100;
 }
 
 .main-navigation ul {
   display: flex;
+  flex-direction: column;
   list-style: none;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-/* Mobile Button verstecken auf Desktop */
-.menu-toggle {
-  display: none;
+/* Grundzustand: Verstecke das Menü auf mobilen Geräten */
+@media screen and (max-width: 768px) {
+  .main-navigation ul {
+    display: none;
+  }
+
+  /* Wenn der Button geklickt wurde (Klasse .toggled ist aktiv) */
+  .main-navigation.toggled ul {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: block; /* Zeige den Button nur mobil */
+  }
 }
 
+/* Desktop-Zustand: Zeige das Menü immer */
+@media screen and (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+  .main-navigation ul {
+    display: flex;
+  }
+}
 /* Seite nach unten schieben damit Header sie nicht überdeckt */
 #primary {
   margin-top: 70px;
@@ -76,10 +192,34 @@ a:hover {
   z-index: 1;
 }
 
+/* Buttons auf Startseite*/
+.container .wp-block-button__link,
+.container .wp-block-buttons a {
+  background-color: var(--color-plum);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.container .wp-block-button__link:hover,
+.container .wp-block-buttons a:hover {
+  background-color: var(--color-plum);
+}
+.container .wp-block-button__link.is-active,
+.container .wp-block-buttons a.is-active {
+  background: linear-gradient(to bottom, #93797a 0%, #bda7a8 60%, #bda7a8 100%);
+}
+
 .angebot-item {
-  background-color: #f2e0e0; /* dein Rosa */
+  background-color: #f2e0e0;
   padding: 1.5rem;
-  margin-top: -1em; /* klebt direkt am Button */
+  margin-top: -1em;
 }
 
 .widget-area {
@@ -87,12 +227,22 @@ a:hover {
 }
 
 .container-left {
-  width: 40vw;
+  width: 100vw;
 }
 .container-right {
-  width: 40vw;
-  right: 0;
-  margin-left: auto;
+  width: 100vw;
+}
+@media (min-width: 768px) {
+  .container-left {
+    width: 40%;
+    margin-left: 0;
+  }
+
+  .container-right {
+    width: 40%;
+    margin-left: auto;
+    right: 0;
+  }
 }
 
 .site-footer {
@@ -121,10 +271,4 @@ a:hover {
   stroke: #1d1d1b;
   stroke-width: 6px;
   stroke-miterlimit: 10;
-}
-
-.header-image-wrap img {
-  height: 200px;
-  width: auto;
-  object-fit: cover;
 }

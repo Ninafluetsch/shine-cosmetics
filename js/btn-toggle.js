@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
           item.removeEventListener("transitionend", handler);
         });
 
-        matchedBtn.classList.remove("is-open");
+        matchedBtn.classList.remove("is-active");
       } else {
         // Öffnen
         item.style.display = "block";
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
           item.removeEventListener("transitionend", handler);
         });
 
-        matchedBtn.classList.add("is-open");
+        matchedBtn.classList.add("is-active");
       }
     });
   });
