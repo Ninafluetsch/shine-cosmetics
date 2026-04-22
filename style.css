@@ -213,11 +213,15 @@ a:hover {
 }
 .container .wp-block-button__link.is-active,
 .container .wp-block-buttons a.is-active {
-  background: linear-gradient(to bottom, #93797a 0%, #bda7a8 60%, #bda7a8 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--color-plum) 0%,
+    var(--color-rose) 100%
+  );
 }
 
 .angebot-item {
-  background-color: #f2e0e0;
+  background-color: var(--color-rose);
   padding: 1.5rem;
   margin-top: -1em;
 }
@@ -268,7 +272,7 @@ a:hover {
 
 .st0 {
   fill: none;
-  stroke: #1d1d1b;
+  stroke: var(--text-color);
   stroke-width: 6px;
   stroke-miterlimit: 10;
 }
