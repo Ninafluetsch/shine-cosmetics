@@ -35,7 +35,7 @@
                     <?php the_custom_logo(); ?>
                 </div>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <span class="hamburger-icon"></span> ☰
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/burger-bar.png" class="hamburger-icon">
                 </button>
 			</div>
 		<?php endif; ?>
@@ -50,3 +50,5 @@
 		</nav>
 	</header>
 </body>
+
+</html>

@@ -30,7 +30,7 @@ h2,
 
 p,
 .text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
@@ -41,6 +41,22 @@ a {
 
 a:hover {
   color: var(--color-plum);
+}
+
+.home {
+  margin: 0px;
+}
+
+/* Seite nach unten schieben damit Header sie nicht überdeckt */
+#primary {
+  margin-top: 70px;
+}
+
+.page-section {
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  margin: 2em;
 }
 
 /* -- Hero Container --*/
@@ -125,14 +141,18 @@ a:hover {
 .menu-toggle {
   display: block;
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
   background: transparent;
   color: white;
   border: none;
   cursor: pointer;
   z-index: 200;
-  font-size: 2em;
+}
+
+.hamburger-icon {
+  width: 30px;
+  height: 30px;
 }
 
 /* Mobile: Navigation anzeigen wenn toggled */
@@ -180,24 +200,13 @@ a:hover {
     display: flex;
   }
 }
-/* Seite nach unten schieben damit Header sie nicht überdeckt */
-#primary {
-  margin-top: 70px;
-}
-
-.page-section {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1;
-}
-
 /* Buttons auf Startseite*/
 .container .wp-block-button__link,
 .container .wp-block-buttons a {
   background-color: var(--color-plum);
   color: white;
-  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  padding: 0.8rem 1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -205,37 +214,60 @@ a:hover {
   text-decoration: none;
   display: inline-block;
   transition: background-color 0.3s ease;
+  transition: padding-bottom 0.3s ease;
 }
 
 .container .wp-block-button__link:hover,
 .container .wp-block-buttons a:hover {
   background-color: var(--color-plum);
 }
-.container .wp-block-button__link.is-active,
+.container .wp-block-button__link.is-activeq,
 .container .wp-block-buttons a.is-active {
   background: linear-gradient(
     to bottom,
     var(--color-plum) 0%,
-    var(--color-rose) 100%
+    var(--color-rose) 80%
   );
+  padding-bottom: 1.5rem;
+}
+
+.block-wrapper.angebot-even .wp-block-button {
+  margin-left: 40vw;
 }
 
 .angebot-item {
   background-color: var(--color-rose);
-  padding: 1.5rem;
   margin-top: -1em;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  box-sizing: border-box;
+  padding-top: 2em;
+}
+.angebot-item > * {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.angebot-item p {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.block-wrapper.angebot-odd p {
+  color: green;
+  max-width: 60vw;
+}
+
+.block-wrapper.angebot-even p {
+  color: red;
+  margin-left: 40vw;
 }
 
 .widget-area {
   background-color: lightblue;
 }
 
-.container-left {
-  width: 100vw;
-}
-.container-right {
-  width: 100vw;
-}
 @media (min-width: 768px) {
   .container-left {
     width: 40%;
@@ -275,4 +307,8 @@ a:hover {
   stroke: var(--text-color);
   stroke-width: 6px;
   stroke-miterlimit: 10;
+}
+
+.wp-block-heading {
+  display: none;
 }

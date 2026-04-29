@@ -1,13 +1,13 @@
 <?php
 /**
- * The main template file
+ * Main Theme Template
  */
-
 
 get_header();
 ?>
 
 <main id='primary' class='site-main'>
+    <!-- Scroll Animation SVG -->
     <div class='svg-scroll'>
         <svg id='Ebene_1' data-name='Ebene 1' xmlns='http://www.w3.org/2000/svg' viewBox="0 0 595.28 1866.46">
             <defs>
@@ -26,26 +26,51 @@ get_header();
         </svg>
     </div>
 
+    <!-- Intro Section -->
+    <section id='intro' class='page-section'>
+        <div class='container'>
+            <?php
+            $intro_query = new WP_Query(array(
+                'category_name' => 'intro',
+                'posts_per_page' => 1
+            ));
+            if ($intro_query->have_posts()):
+                while ($intro_query->have_posts()):
+                    $intro_query->the_post();
+                    ?>
+                    <article class='intro-item'>
+                        <?php the_content(); ?>
+                    </article>
+                <?php endwhile;
+            endif;
+            wp_reset_postdata();
+            ?>
+        </div>
+    </section>
+
+    <!-- Angebot Section -->
     <section id='angebot' class='page-section gray-bg'>
-        <div class='container-left'>
-            <div class='angebot-grid'>
+        <div>
+            <div>
                 <?php
-                // Seite "Angebot" – Titel + Content (enthält H1-Blöcke, Paragraphen, Buttons)
                 $page_query = new WP_Query('pagename=angebot');
                 while ($page_query->have_posts()):
                     $page_query->the_post();
                     ?>
+
                     <div class='container'>
                         <h1><?php the_title(); ?></h1>
-                        <?php the_content(); ?>
+            
+                        <!-- hier nur 60 width definieren & bestimmen ob links oder rechts anhand von zahl -->
+                            <?php the_content(); ?>
+
                     </div>
+
                 <?php endwhile;
                 wp_reset_postdata();
                 ?>
 
-                 <?php
-                // Posts der Kategorie "angebot" 
-                // data-title wird für das Matching mit dem Button-Text verwendet
+                <?php
                 $angebot_query = new WP_Query(array(
                     'category_name' => 'angebot',
                     'posts_per_page' => -1
@@ -70,6 +95,7 @@ get_header();
         </div>
     </section>
 
+    <!-- Gutscheine Section -->
     <section id='gutscheine' class='page-section'>
         <div class="container-right">
             <?php
@@ -78,12 +104,8 @@ get_header();
                 $voucher_query->the_post();
                 ?>
                 <div class='container'>
-                    <h2>
-                        <?php the_title();
-                        ?>
-                    </h2>
-                    <?php the_content();
-                    ?>
+                    <h1><?php the_title(); ?></h1>
+                    <?php the_content(); ?>
                 </div>
             <?php endwhile;
             wp_reset_postdata();
@@ -91,20 +113,17 @@ get_header();
         </div>
     </section>
 
+    <!-- Kontakt Section -->
     <section id='kontakt' class='page-section'>
-        <div class='container-left'>
+        <div>
             <?php
-            $voucher_query = new WP_Query('pagename=kontakt');
-            while ($voucher_query->have_posts()):
-                $voucher_query->the_post();
+            $contact_query = new WP_Query('pagename=kontakt');
+            while ($contact_query->have_posts()):
+                $contact_query->the_post();
                 ?>
                 <div class='container'>
-                    <h2>
-                        <?php the_title();
-                        ?>
-                    </h2>
-                    <?php the_content();
-                    ?>
+                    <h1><?php the_title(); ?></h1>
+                    <?php the_content(); ?>
                 </div>
             <?php endwhile;
             wp_reset_postdata();
