@@ -1,4 +1,6 @@
-/* Grundlegende Farbvariablen */
+/* ============================================
+   BASE STYLES
+   ============================================ */
 :root {
   --color-green: #7d9174;
   --color-plum: #93797a;
@@ -6,12 +8,14 @@
   --text-color: #242424;
 }
 
-/* Grundlegende Schriftarten */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   color: var(--text-color);
 }
 
+/* ============================================
+   TYPOGRAPHIE
+   ============================================ */
 h1,
 .h1 {
   font-size: 3.5rem;
@@ -43,11 +47,13 @@ a:hover {
   color: var(--color-plum);
 }
 
+/* ============================================
+   LAYOUT
+   ============================================ */
 .home {
-  margin: 0px;
+  margin: 0;
 }
 
-/* Seite nach unten schieben damit Header sie nicht überdeckt */
 #primary {
   margin-top: 70px;
 }
@@ -59,18 +65,26 @@ a:hover {
   margin: 2em;
 }
 
-/* -- Hero Container --*/
+@media screen and (min-width: 769px) {
+  .page-section {
+    margin-left: 30em;
+    margin-right: 30em;
+  }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
 .header-hero {
   position: relative;
   width: 100%;
-  height: 33.33vh; /* 1/3 der Bildschirmhöhe */
+  height: 33.33vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Das 20% Overlay */
 .header-hero::after {
   content: "";
   position: absolute;
@@ -78,11 +92,10 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(93, 86, 76, 0.8); /* 0.2 entspricht 20% Schwarz */
-  z-index: 2; /* Liegt über dem Bild (Z-Index 1) */
+  background-color: rgba(93, 86, 76, 0.8);
+  z-index: 2;
 }
 
-/* Hintergrundbild auf volle Breite/Höhe trimmen */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -111,6 +124,7 @@ a:hover {
   color: rgba(255, 255, 255, 0.2);
   text-transform: uppercase;
 }
+
 .hero-text-2 {
   font-size: 16vw;
   font-weight: 900;
@@ -119,7 +133,6 @@ a:hover {
   text-transform: uppercase;
 }
 
-/* Zentriertes Logo */
 .hero-logo-wrap {
   position: relative;
   z-index: 3;
@@ -133,11 +146,32 @@ a:hover {
   display: block;
 }
 
+@media screen and (min-width: 769px) {
+  .header-hero {
+    height: 80vh;
+  }
+  .hero-logo-wrap {
+    width: 10%;
+  }
+  .hero-text-1 {
+    font-size: 20vw;
+  }
+  .hero-text-2 {
+    font-size: 12vw;
+  }
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.site-header {
+  position: relative;
+}
+
 .main-navigation {
   display: none;
 }
 
-/* Mobile Button zeigen */
 .menu-toggle {
   display: block;
   position: fixed;
@@ -155,7 +189,6 @@ a:hover {
   height: 30px;
 }
 
-/* Mobile: Navigation anzeigen wenn toggled */
 .main-navigation.toggled {
   display: flex;
   position: fixed;
@@ -168,6 +201,10 @@ a:hover {
   z-index: 100;
 }
 
+.main-navigation.toggled ul {
+  display: block;
+}
+
 .main-navigation ul {
   display: flex;
   flex-direction: column;
@@ -175,32 +212,53 @@ a:hover {
   gap: 1rem;
 }
 
-/* Grundzustand: Verstecke das Menü auf mobilen Geräten */
-@media screen and (max-width: 768px) {
-  .main-navigation ul {
+.main-navigation a {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  .main-navigation {
     display: none;
   }
 
-  /* Wenn der Button geklickt wurde (Klasse .toggled ist aktiv) */
-  .main-navigation.toggled ul {
-    display: block;
-  }
-
-  .menu-toggle {
-    display: block; /* Zeige den Button nur mobil */
+  .main-navigation ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 2rem;
   }
 }
 
-/* Desktop-Zustand: Zeige das Menü immer */
 @media screen and (min-width: 769px) {
   .menu-toggle {
     display: none;
   }
+
+  .main-navigation {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 0;
+    z-index: 10;
+  }
+
   .main-navigation ul {
     display: flex;
+    flex-direction: row;
+  }
+  .main-navigation a {
+    color: white;
+    font-weight: 600;
   }
 }
-/* Buttons auf Startseite*/
+
+/* ============================================
+   BUTTONS STARTSEITE
+   ============================================ */
 .container .wp-block-button__link,
 .container .wp-block-buttons a {
   background-color: var(--color-plum);
@@ -213,15 +271,17 @@ a:hover {
   font-weight: 600;
   text-decoration: none;
   display: inline-block;
-  transition: background-color 0.3s ease;
-  transition: padding-bottom 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    padding-bottom 0.3s ease;
 }
 
 .container .wp-block-button__link:hover,
 .container .wp-block-buttons a:hover {
   background-color: var(--color-plum);
 }
-.container .wp-block-button__link.is-activeq,
+
+.container .wp-block-button__link.is-active,
 .container .wp-block-buttons a.is-active {
   background: linear-gradient(
     to bottom,
@@ -231,10 +291,26 @@ a:hover {
   padding-bottom: 1.5rem;
 }
 
-.block-wrapper.angebot-even .wp-block-button {
+/* ============================================
+   ANGEBOT SECTION (BLÖCKE)
+   ============================================ */
+.block-wrapper.angebot-odd .wp-block-button {
+  margin-left: 25vw;
+}
+
+.block-wrapper.angebot-even p {
+  color: green;
+  max-width: 60vw;
+}
+
+.block-wrapper.angebot-odd p {
+  color: red;
   margin-left: 40vw;
 }
 
+/* ============================================
+   ANGEBOT ITEMS (TOGGLE INHALTE)
+   ============================================ */
 .angebot-item {
   background-color: var(--color-rose);
   margin-top: -1em;
@@ -245,54 +321,38 @@ a:hover {
   box-sizing: border-box;
   padding-top: 2em;
 }
+
 .angebot-item > * {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
 .angebot-item p {
   padding-left: 2em;
   padding-right: 2em;
 }
 
-.block-wrapper.angebot-odd p {
-  color: green;
-  max-width: 60vw;
-}
-
-.block-wrapper.angebot-even p {
-  color: red;
-  margin-left: 40vw;
-}
-
-.widget-area {
-  background-color: lightblue;
-}
-
-@media (min-width: 768px) {
-  .container-left {
-    width: 40%;
-    margin-left: 0;
+@media screen and (min-width: 769px) {
+  .block-wrapper.angebot-even p {
+    color: green;
+    margin-right: 25vw;
   }
 
-  .container-right {
-    width: 40%;
-    margin-left: auto;
-    right: 0;
+  .block-wrapper.angebot-odd p {
+    color: red;
+    margin-left: 25vw;
   }
 }
 
-.site-footer {
-  background-color: lightgoldenrodyellow;
-}
-
+/* ============================================
+   SVG SCROLL ANIMATION
+   ============================================ */
 .svg-scroll {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 0;
   pointer-events: none;
 }
@@ -309,6 +369,17 @@ a:hover {
   stroke-miterlimit: 10;
 }
 
+/* ============================================
+   UTILITIES & MISC
+   ============================================ */
 .wp-block-heading {
   display: none;
+}
+
+.widget-area {
+  background-color: lightblue;
+}
+
+.site-footer {
+  background-color: lightgoldenrodyellow;
 }
