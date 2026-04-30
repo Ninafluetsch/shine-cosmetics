@@ -8,19 +8,13 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<p>footer</p>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'shine-cosmetics' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'shine-cosmetics' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'shine-cosmetics' ), 'shine-cosmetics', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
+			<h3>SHINE Cosmetics</h3>
+			<p>
+				<a href="mailto:leuenberger@shine-cosmetics.ch">leuenberger@shine-cosmetics.ch</a><br>
+				<a href="tel:+41796353817">+41 (0)79 635 38 17</a><br>
+				<a href="https://www.google.com/maps/dir/?api=1&destination=Hammerstrasse%2044%2C%208008%20Z%C3%BCrich%2C%20Schweiz" target="_blank" rel="noopener">Hammerstrasse 44, 8008 Zürich</a>
+			</p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

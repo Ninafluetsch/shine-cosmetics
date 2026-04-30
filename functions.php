@@ -12,6 +12,7 @@ function enqueue_assets() {
     wp_enqueue_script('btn-toggle', get_template_directory_uri() . '/js/btn-toggle.js', array(), '1.0.0', true);
     wp_enqueue_script('scroll-animation', get_template_directory_uri() . '/js/scroll-animation.js', array(), '1.0.0', true);
     wp_enqueue_script('angebot-position', get_template_directory_uri() . '/js/angebot-position.js', array(), '1.0.0', true);
+    wp_enqueue_script('image-loop', get_template_directory_uri() . '/js/image-loop.js', array(), '1.0.0', true);
 }
 
 // Theme-Funktionen initialisieren

@@ -59,8 +59,8 @@ get_header();
                     ?>
 
                     <div class='container'>
-                        <h1><?php the_title(); ?></h1>
-                            <?php the_content(); ?>
+                        <?php the_title('<h1>', '</h1>'); ?>
+                        <?php the_content(); ?>
                     </div>
 
                 <?php endwhile;
@@ -81,7 +81,7 @@ get_header();
                             data-title='<?php echo esc_attr(get_the_title()); ?>'
                             style='display: none;'
                         >                                
-                        <h3><?php the_title(); ?></h3>
+                        <?php the_title('<h3>', '</h3>'); ?>
                         <?php the_content(); ?> 
                             
                         </article>
@@ -90,6 +90,91 @@ get_header();
                 wp_reset_postdata();
                 ?>
             </div>
+        </div>
+            <section id='product-line'>
+            <div class='container'>
+                <?php
+                $product_line_query = new WP_Query(array(
+                    'category_name' => 'product-line',
+                    'posts_per_page' => 1
+                ));
+                $product_line_post_id = null;
+                
+                if ($product_line_query->have_posts()):
+                    while ($product_line_query->have_posts()):
+                        $product_line_query->the_post();
+                        $product_line_post_id = get_the_ID();
+                        ?>
+                        <article class='product-line-item'>
+                            <?php the_title('<h2>', '</h2>'); ?>
+                            <?php echo strip_tags(get_the_content(), '<p>'); ?>
+                        </article>
+                    <?php endwhile;
+                endif;
+                wp_reset_postdata();
+                ?>
+            </div>
+        </section>
+        <!-- Loop-Container Product Line  -->
+        <section id='image-loop'>
+        <div class='image-loop-container'>
+            <div class='image-loop-track'>
+                <?php
+                if ($product_line_post_id):
+                    $images = get_posts(array(
+                        'post_type' => 'attachment',
+                        'posts_per_page' => -1,
+                        'post_parent' => $product_line_post_id,
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    
+                    if ($images):
+                        foreach ($images as $image):
+                            echo wp_get_attachment_image($image->ID, 'full', false, array('class' => 'loop-image'));
+                        endforeach;
+                    endif;
+                endif;
+                ?>
+            </div>
+        </div>
+    </section>
+    </section>
+
+        <!-- Über Shine Section -->
+    <section id='ueber-shine' class='page-section'>
+        <div>
+            <?php
+            $contact_query = new WP_Query('pagename=ueber-shine');
+            while ($contact_query->have_posts()):
+                $contact_query->the_post();
+                ?>
+                <div class='container'>
+                    <?php the_title('<h1>', '</h1>'); ?>
+                    <?php the_content(); ?>
+                </div>
+            <?php endwhile;
+            wp_reset_postdata();
+            ?>
+        </div>
+    </section>
+
+
+    <!-- Impressionen Section -->
+    <section id='impressionen' class='page-section'>
+        <div>
+            <?php
+            $contact_query = new WP_Query('pagename=impressionen');
+            while ($contact_query->have_posts()):
+                $contact_query->the_post();
+                ?>
+                <div class='container'>
+                    <h1><?php the_title(); ?></h1>
+                    <?php the_content(); ?>
+                </div>
+            <?php endwhile;
+            wp_reset_postdata();
+            ?>
         </div>
     </section>
 
@@ -120,7 +205,7 @@ get_header();
                 $contact_query->the_post();
                 ?>
                 <div class='container'>
-                    <h1><?php the_title(); ?></h1>
+                    <?php the_title('<h1>', '</h1>'); ?>
                     <?php the_content(); ?>
                 </div>
             <?php endwhile;

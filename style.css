@@ -18,11 +18,12 @@ body {
    ============================================ */
 h1,
 .h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 5rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  color: #b0aeae;
+  color: #cfcfcf;
 }
 
 h2,
@@ -45,6 +46,14 @@ a {
 
 a:hover {
   color: var(--color-plum);
+}
+
+@media screen and (min-width: 769px) {
+  h1,
+  .h1 {
+    font-size: 6rem;
+    font-weight: 800;
+  }
 }
 
 /* ============================================
@@ -301,11 +310,13 @@ a:hover {
 .block-wrapper.angebot-even p {
   /* color: green; */
   max-width: 60vw;
+  margin-top: 3rem;
 }
 
 .block-wrapper.angebot-odd p {
   /* color: red; */
   margin-left: 40vw;
+  margin-top: 3rem;
 }
 
 /* ============================================
@@ -354,6 +365,46 @@ a:hover {
 }
 
 /* ============================================
+    IMAGE LOOP (Product line)
+   ============================================ */
+#image-loop {
+  overflow: hidden;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.image-loop-container {
+  width: 100%;
+}
+
+.image-loop-track {
+  display: flex;
+  animation: scroll-left 10s linear infinite;
+  width: max-content;
+}
+
+.loop-image {
+  height: 5vh;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+  padding-left: 3em;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================
    SVG SCROLL ANIMATION
    ============================================ */
 .svg-scroll {
@@ -390,5 +441,6 @@ a:hover {
 }
 
 .site-footer {
-  background-color: lightgoldenrodyellow;
+  background-color: var(--color-rose);
+  padding: 2em;
 }
