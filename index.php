@@ -60,10 +60,7 @@ get_header();
 
                     <div class='container'>
                         <h1><?php the_title(); ?></h1>
-            
-                        <!-- hier nur 60 width definieren & bestimmen ob links oder rechts anhand von zahl -->
                             <?php the_content(); ?>
-
                     </div>
 
                 <?php endwhile;
@@ -83,9 +80,10 @@ get_header();
                             class='angebot-item'
                             data-title='<?php echo esc_attr(get_the_title()); ?>'
                             style='display: none;'
-                        >
-                            <h3><?php the_title(); ?></h3>
-                            <?php the_content(); ?>
+                        >                                
+                        <h3><?php the_title(); ?></h3>
+                        <?php the_content(); ?> 
+                            
                         </article>
                     <?php endwhile;
                 endif;

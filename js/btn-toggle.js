@@ -41,7 +41,6 @@ function hideHeading(item) {
   if (heading) heading.style.display = "none";
 }
 
-// Positioniert das Angebot direkt hinter dem Button
 function repositionItem(item, button) {
   const wrapper = button.closest(".wp-block-buttons") || button.parentElement;
   wrapper.insertAdjacentElement("afterend", item);

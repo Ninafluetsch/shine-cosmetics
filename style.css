@@ -67,8 +67,8 @@ a:hover {
 
 @media screen and (min-width: 769px) {
   .page-section {
-    margin-left: 30em;
-    margin-right: 30em;
+    margin-left: 25vw;
+    margin-right: 25vw;
   }
 }
 
@@ -299,12 +299,12 @@ a:hover {
 }
 
 .block-wrapper.angebot-even p {
-  color: green;
+  /* color: green; */
   max-width: 60vw;
 }
 
 .block-wrapper.angebot-odd p {
-  color: red;
+  /* color: red; */
   margin-left: 40vw;
 }
 
@@ -313,13 +313,13 @@ a:hover {
    ============================================ */
 .angebot-item {
   background-color: var(--color-rose);
-  margin-top: -1em;
   position: relative;
   width: 100vw;
+  margin-top: -1em;
   margin-left: calc(-50vw + 50%) !important;
   margin-right: calc(-50vw + 50%) !important;
+  padding-bottom: 2em;
   box-sizing: border-box;
-  padding-top: 2em;
 }
 
 .angebot-item > * {
@@ -330,17 +330,26 @@ a:hover {
 .angebot-item p {
   padding-left: 2em;
   padding-right: 2em;
+  margin: 0 auto !important;
+}
+
+.angebot-item img {
+  margin-top: 3em;
+  margin-bottom: 1em;
 }
 
 @media screen and (min-width: 769px) {
   .block-wrapper.angebot-even p {
-    color: green;
     margin-right: 25vw;
   }
 
   .block-wrapper.angebot-odd p {
-    color: red;
     margin-left: 25vw;
+  }
+
+  .angebot-item img {
+    width: 80%;
+    float: right;
   }
 }
 
