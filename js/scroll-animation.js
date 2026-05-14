@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const startScroll = 0; // px, ab wann Animation
-  const endScroll = 300; // px, wann sie endet
+  const endScroll = 1000; // px, wann sie endet
 
   window.addEventListener("scroll", function () {
     const scrollY = window.scrollY;
