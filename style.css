@@ -63,21 +63,17 @@ a:hover {
   margin: 0;
 }
 
-#primary {
-  margin-top: 70px;
-}
-
 .page-section {
   justify-content: space-between;
   position: relative;
   z-index: 1;
-  margin: 2em;
+  padding: 2em;
 }
 
 @media screen and (min-width: 769px) {
   .page-section {
-    margin-left: 25vw;
-    margin-right: 25vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
   }
 }
 
@@ -336,11 +332,10 @@ a:hover {
 .angebot-item > * {
   margin-left: auto !important;
   margin-right: auto !important;
+  max-width: 70vw;
 }
 
 .angebot-item p {
-  padding-left: 2em;
-  padding-right: 2em;
   margin: 0 auto !important;
 }
 
@@ -369,30 +364,31 @@ a:hover {
    ============================================ */
 #image-loop {
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
   position: relative;
-  /* left: 50%;
-  right: 50%; */
-  /* margin-left: -50vw; */
-  /* margin-right: -50vw; */
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #ffffff;
+  padding: 2em 0;
 }
 
 .image-loop-container {
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .image-loop-track {
   display: flex;
-  animation: scroll-left 10s linear infinite;
-  width: max-content;
+  animation: scroll-left 20s linear infinite;
+  will-change: transform;
 }
 
 .loop-image {
-  height: 5vh;
+  height: 8vh;
   width: auto;
   flex-shrink: 0;
   object-fit: contain;
-  padding-left: 3em;
+  padding: 0 2em;
 }
 
 @keyframes scroll-left {
@@ -429,6 +425,10 @@ a:hover {
   stroke-miterlimit: 10;
 }
 
+.wp-block-media-text__content {
+  padding: 0 !important;
+}
+
 /* ============================================
    UTILITIES & MISC
    ============================================ */
@@ -440,7 +440,186 @@ a:hover {
   background-color: lightblue;
 }
 
+.wp-block-media-text {
+  gap: 1.5em;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
 .site-footer {
   background-color: var(--color-rose);
-  padding: 2em;
+  padding: 2em 2em;
+}
+
+.footer-content {
+  max-width: 60%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 3em;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  flex-shrink: 0;
+}
+
+.footer-logo-img {
+  max-width: 120px;
+  height: auto;
+  margin-top: 10px;
+}
+
+.site-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.contact-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.contact-item a {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: var(--color-green);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2em;
+  }
+
+  .footer-logo {
+    margin-bottom: 1em;
+  }
+
+  .site-info {
+    min-width: 100%;
+  }
+}
+
+/* ============================================
+   KONTAKT SECTION
+   ============================================ */
+#kontakt.kontakt-section {
+  background-color: #f9f7f6;
+  padding: 3em 2em;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ============================================
+   INTRO & IMPRESSIONEN SECTIONS
+   ============================================ */
+#intro,
+#impressionen,
+#kontakt {
+  background-color: #f9f7f6 !important;
+}
+
+.kontakt-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.kontakt-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+.kontakt-text {
+  padding: 0;
+}
+
+.kontakt-text h1 {
+  margin-top: 0;
+}
+
+.kontakt-text p,
+.kontakt-text a {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.kontakt-image {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.kontakt-mood-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.kontakt-image:hover .kontakt-mood-image {
+  transform: scale(1.02);
+}
+
+@media screen and (max-width: 1024px) {
+  .kontakt-content {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+
+  .kontakt-text {
+    padding: 0;
+  }
+
+  .kontakt-image {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #kontakt.kontakt-section {
+    padding: 2em 1em;
+  }
+
+  .kontakt-content {
+    padding: 0;
+  }
+
+  .kontakt-text {
+    padding: 0;
+  }
+
+  .kontakt-text h1 {
+    font-size: 1.8rem;
+    margin-top: 0;
+  }
 }

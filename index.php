@@ -27,8 +27,8 @@ get_header();
     </div>
 
     <!-- Intro Section -->
-    <section id='intro' class='page-section'>
-        <div class='container'>
+    <section id='intro'>
+        <div class='container page-section'>
             <?php
             $intro_query = new WP_Query(array(
                 'category_name' => 'intro',
@@ -161,8 +161,8 @@ get_header();
 
 
     <!-- Impressionen Section -->
-    <section id='impressionen' class='page-section'>
-        <div>
+    <section id='impressionen'>
+        <div  class='page-section'>
             <?php
             $contact_query = new WP_Query('pagename=impressionen');
             while ($contact_query->have_posts()):
@@ -180,7 +180,7 @@ get_header();
 
     <!-- Gutscheine Section -->
     <section id='gutscheine' class='page-section'>
-        <div class="container-right">
+        <div class="container">
             <?php
             $voucher_query = new WP_Query('pagename=gutscheine');
             while ($voucher_query->have_posts()):
@@ -197,16 +197,37 @@ get_header();
     </section>
 
     <!-- Kontakt Section -->
-    <section id='kontakt' class='page-section'>
-        <div>
+    <section id='kontakt'>
+        <div class='page-section'>
             <?php
             $contact_query = new WP_Query('pagename=kontakt');
             while ($contact_query->have_posts()):
                 $contact_query->the_post();
                 ?>
-                <div class='container'>
-                    <?php the_title('<h1>', '</h1>'); ?>
-                    <?php the_content(); ?>
+                <div class='kontakt-content'>
+                    <div class='kontakt-text'>
+                        <?php the_title('<h1>', '</h1>'); ?>
+                        <?php the_content(); ?>
+                    </div>
+                    <div class='kontakt-image'>
+                        <?php 
+                        if (has_post_thumbnail()) {
+                            the_post_thumbnail('large', array('class' => 'kontakt-mood-image'));
+                        } else {
+                            // Fallback: Zeige das erste Bild aus dem Post an
+                            $images = get_posts(array(
+                                'post_type' => 'attachment',
+                                'posts_per_page' => 1,
+                                'post_parent' => get_the_ID(),
+                                'orderby' => 'menu_order',
+                                'order' => 'ASC'
+                            ));
+                            if ($images) {
+                                echo wp_get_attachment_image($images[0]->ID, 'large', false, array('class' => 'kontakt-mood-image'));
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             <?php endwhile;
             wp_reset_postdata();
