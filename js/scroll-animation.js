@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const svgContainer = document.querySelector(".svg-scroll");
+  const svgContainer = document.querySelector(".svg-scroll-background");
   if (!svgContainer) return;
 
   const paths = svgContainer.querySelectorAll("svg path");
@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
     path.style.strokeDashoffset = length;
   });
 
-  const startScroll = 0; // px, ab wann Animation
-  const endScroll = 1000; // px, wann sie endet
+  const startScroll = 50;
+  const endScroll = 50 + 1500;
 
   window.addEventListener("scroll", function () {
     const scrollY = window.scrollY;
     let progress = (scrollY - startScroll) / (endScroll - startScroll);
-    progress = Math.max(0, Math.min(progress, 1)); // Begrenzen auf 0–1
+    progress = Math.max(0, Math.min(progress, 1));
 
     paths.forEach(function (path) {
       const length = path.getTotalLength();
@@ -24,25 +24,4 @@ document.addEventListener("DOMContentLoaded", function () {
       path.style.strokeDashoffset = length - drawLength;
     });
   });
-
-  const svgBg = document.querySelector(".svg-bg");
-  if (!svgBg) return;
-
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Starte  Animation
-          startSvgAnimation();
-          observer.disconnect();
-        }
-      });
-    },
-    {
-      root: null,
-      threshold: 0.1, // 10% sichtbar
-    },
-  );
-
-  observer.observe(svgBg);
 });

@@ -403,14 +403,17 @@ a:hover {
 /* ============================================
    SVG SCROLL ANIMATION
    ============================================ */
-.svg-scroll {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
+.svg-scroll-background {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 20px 0;
+}
+
+.svg-scroll-background svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 #Ebene_1 {
