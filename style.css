@@ -404,10 +404,15 @@ a:hover {
    SVG SCROLL ANIMATION
    ============================================ */
 .svg-scroll-background {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 50px 20px 0;
+  z-index: 0; /* Hintergrund */
+  pointer-events: none; /* nicht klickbar */
+  margin-top: 50vh;
 }
 
 .svg-scroll-background svg {
@@ -544,6 +549,11 @@ a:hover {
 #impressionen,
 #kontakt {
   background-color: #f9f7f6 !important;
+  position: relative;
+  z-index: 1;
+}
+#primary {
+  position: relative;
 }
 
 .kontakt-wrapper {
