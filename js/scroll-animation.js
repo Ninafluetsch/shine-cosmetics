@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     path.style.strokeDashoffset = length;
   });
 
-  const startScroll = 50;
-  const endScroll = 50 + 1500;
+  const startScroll = 250;
+  const endScroll = 2500;
 
   window.addEventListener("scroll", function () {
     const scrollY = window.scrollY;
