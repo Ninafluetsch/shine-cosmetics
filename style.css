@@ -68,6 +68,8 @@ a:hover {
   position: relative;
   z-index: 1;
   padding: 2em;
+  padding-top: 6em;
+  padding-bottom: 10em;
 }
 
 @media screen and (min-width: 769px) {
@@ -370,42 +372,42 @@ a:hover {
 }
 
 /* Image Loop */
-#image-loop {
+.image-loop-section {
   overflow: hidden;
-  width: 100vw;
-  position: relative;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  background-color: #ffffff;
-  padding: 2em 0;
+  width: 100%;
 }
 
-.image-loop-container {
-  width: 100vw;
-  overflow: hidden;
-}
-
-.image-loop-track {
+.loop-track {
   display: flex;
-  animation: scroll-left 20s linear infinite;
-  will-change: transform;
+  width: max-content;
+  animation: loop-scroll 24s linear infinite;
 }
 
-.loop-image {
-  height: 8vh;
-  width: auto;
+.loop-track:hover {
+  animation-play-state: paused; /* optional: pausiert bei Hover */
+}
+
+.loop-item {
   flex-shrink: 0;
-  object-fit: contain;
-  padding: 0 2em;
+  width: auto;
+  height: 100px;
+  margin: 0 50px;
 }
 
-@keyframes scroll-left {
+.loop-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes loop-scroll {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
-  }
+  } /* immer -50% bei 2× Inhalt */
 }
 
 /* ============================================
@@ -554,15 +556,14 @@ a:hover {
    INTRO & IMPRESSIONEN SECTIONS
    ============================================ */
 #intro,
-#impressionen,
-#kontakt {
+#ueber-shine,
+#gutscheine {
   background-color: #f9f7f6 !important;
   position: relative;
   z-index: 1;
 }
 
-#intro {
-  height: 30vh;
+#impressionen {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -592,7 +593,7 @@ a:hover {
 }
 
 .kontakt-text h1 {
-  margin-top: 0;
+  margin-top: 0 !important;
 }
 
 .kontakt-text p,

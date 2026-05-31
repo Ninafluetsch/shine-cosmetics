@@ -73,7 +73,7 @@ get_header();
                     'posts_per_page' => -1
                 ));
 
-            // ✅ Array mit den SVG-Section IDs
+            //  Array mit den SVG-Section IDs
             $svg_sections = array('face', 'body', 'legs', 'hand-feet');
             $section_index = 0;
             
@@ -131,33 +131,35 @@ get_header();
         
         <!-- Loop-Container Product Line  -->
         <section id='image-loop'>
-            <div class='image-loop-container'>
-                <div class='image-loop-track'>
-                    <?php
-                    if ($product_line_post_id):
-                        $images = get_posts(array(
-                            'post_type' => 'attachment',
-                            'posts_per_page' => -1,
-                            'post_parent' => $product_line_post_id,
-                            'orderby' => 'menu_order',
-                            'order' => 'ASC'
-                        ));
-                        
-                        if ($images):
-                            foreach ($images as $image):
-                                echo wp_get_attachment_image($image->ID, 'full', false, array('class' => 'loop-image'));
-                            endforeach;
-                        endif;
-                    endif;
-                    ?>
-                </div>
-            </div>
-        </section>
+<section class="image-loop-section">
+  <div class="loop-track">
+    <!-- Originale Bilder -->
+    <div class="loop-item">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-1.png" alt="Bild 1" loading="lazy">
+    </div>
+    <div class="loop-item">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-2.png" alt="Bild 2" loading="lazy">
+    </div>
+    <div class="loop-item">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-3.png" alt="Bild 3" loading="lazy">
+    </div>
+    <!-- Duplikate für nahtlosen Loop -->
+    <div class="loop-item">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-1.png" alt="Bild 1" loading="lazy">
+    </div>
+    <div class="loop-item">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-2.png" alt="Bild 2" loading="lazy">
+    </div>
+    <div class="loop-item">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-3.png" alt="Bild 3" loading="lazy">
+    </div>
+  </div>
+</section>
     </section>
 
         <!-- Über Shine Section -->
-    <section id='ueber-shine' class='page-section'>
-        <div>
+    <section id='ueber-shine'>
+        <div class='page-section'>
             <?php
             $contact_query = new WP_Query('pagename=ueber-shine');
             while ($contact_query->have_posts()):
@@ -189,12 +191,15 @@ get_header();
             <?php endwhile;
             wp_reset_postdata();
             ?>
+
+            <?php echo do_shortcode('[gallery ids="1,2,3,4,5"]'); ?>
+
         </div>
     </section>
 
     <!-- Gutscheine Section -->
-    <section id='gutscheine' class='page-section'>
-        <div class="container">
+    <section id='gutscheine'>
+        <div class="page-section">
             <?php
             $voucher_query = new WP_Query('pagename=gutscheine');
             while ($voucher_query->have_posts()):
