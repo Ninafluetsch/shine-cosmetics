@@ -299,20 +299,17 @@ a:hover {
 /* ============================================
    ANGEBOT SECTION (BLÖCKE)
    ============================================ */
-.block-wrapper.angebot-odd .wp-block-button {
-  margin-left: 25vw;
-}
-
-.block-wrapper.angebot-even p {
+.block-wrapper.angebot-even {
   /* color: green; */
-  max-width: 60vw;
-  margin-top: 3rem;
+  width: 70%;
+  margin-top: 8rem;
 }
 
-.block-wrapper.angebot-odd p {
+.block-wrapper.angebot-odd {
   /* color: red; */
-  margin-left: 40vw;
-  margin-top: 3rem;
+  width: 70%;
+  margin-left: auto;
+  margin-top: 8rem;
 }
 
 /* ============================================
@@ -345,12 +342,14 @@ a:hover {
 }
 
 @media screen and (min-width: 769px) {
-  .block-wrapper.angebot-even p {
+  .block-wrapper.angebot-even {
     margin-right: 25vw;
+    width: 45%;
   }
 
-  .block-wrapper.angebot-odd p {
+  .block-wrapper.angebot-odd {
     margin-left: 25vw;
+    width: 45%;
   }
 
   .angebot-item img {
@@ -360,8 +359,17 @@ a:hover {
 }
 
 /* ============================================
-    IMAGE LOOP (Product line)
+    Product line
    ============================================ */
+
+#product-line {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image Loop */
 #image-loop {
   overflow: hidden;
   width: 100vw;
@@ -406,13 +414,13 @@ a:hover {
 .svg-scroll-background {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 45%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   z-index: 0; /* Hintergrund */
   pointer-events: none; /* nicht klickbar */
-  margin-top: 50vh;
+  margin-top: 60vh;
 }
 
 .svg-scroll-background svg {
@@ -552,6 +560,14 @@ a:hover {
   position: relative;
   z-index: 1;
 }
+
+#intro {
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #primary {
   position: relative;
 }
