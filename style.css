@@ -69,7 +69,7 @@ a:hover {
   z-index: 1;
   padding: 2em;
   padding-top: 6em;
-  padding-bottom: 10em;
+  padding-bottom: 6em;
 }
 
 @media screen and (min-width: 769px) {
@@ -301,17 +301,20 @@ a:hover {
 /* ============================================
    ANGEBOT SECTION (BLÖCKE)
    ============================================ */
+
 .block-wrapper.angebot-even {
   /* color: green; */
   width: 70%;
-  margin-top: 8rem;
+  margin-top: 12rem;
+  margin-bottom: 12rem;
 }
 
 .block-wrapper.angebot-odd {
   /* color: red; */
   width: 70%;
   margin-left: auto;
-  margin-top: 8rem;
+  margin-top: 12rem;
+  margin-bottom: 12rem;
 }
 
 /* ============================================
@@ -322,10 +325,7 @@ a:hover {
   position: relative;
   width: 100vw;
   margin-top: -1em;
-  margin-left: calc(-50vw + 50%) !important;
-  margin-right: calc(-50vw + 50%) !important;
   padding-bottom: 2em;
-  box-sizing: border-box;
 }
 
 .angebot-item > * {
@@ -365,32 +365,32 @@ a:hover {
    ============================================ */
 
 #product-line {
-  height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+#image-loop {
+  width: 100%;
+  overflow-x: hidden;
+}
 /* Image Loop */
 .image-loop-section {
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
+  margin-bottom: 10em;
 }
 
 .loop-track {
   display: flex;
   width: max-content;
-  animation: loop-scroll 24s linear infinite;
-}
-
-.loop-track:hover {
-  animation-play-state: paused; /* optional: pausiert bei Hover */
+  animation: loop-scroll 12s linear infinite;
 }
 
 .loop-item {
   flex-shrink: 0;
   width: auto;
-  height: 100px;
+  height: 50px;
   margin: 0 50px;
 }
 
@@ -406,8 +406,8 @@ a:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
-  } /* immer -50% bei 2× Inhalt */
+    transform: translateX(-33.3%);
+  }
 }
 
 /* ============================================
