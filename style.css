@@ -306,7 +306,6 @@ a:hover {
   /* color: green; */
   width: 70%;
   margin-top: 12rem;
-  margin-bottom: 12rem;
 }
 
 .block-wrapper.angebot-odd {
@@ -314,24 +313,28 @@ a:hover {
   width: 70%;
   margin-left: auto;
   margin-top: 12rem;
-  margin-bottom: 12rem;
 }
 
 /* ============================================
    ANGEBOT ITEMS (TOGGLE INHALTE)
    ============================================ */
+
 .angebot-item {
   background-color: var(--color-rose);
   position: relative;
   width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: -1em;
+  padding-top: 2em;
   padding-bottom: 2em;
+  z-index: 100;
 }
 
 .angebot-item > * {
+  width: 70vw;
   margin-left: auto !important;
   margin-right: auto !important;
-  max-width: 70vw;
 }
 
 .angebot-item p {
@@ -416,13 +419,13 @@ a:hover {
 .svg-scroll-background {
   position: absolute;
   top: 0;
-  left: 45%;
+  left: 40%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 900px;
-  z-index: 0; /* Hintergrund */
-  pointer-events: none; /* nicht klickbar */
-  margin-top: 60vh;
+  z-index: 0;
+  pointer-events: none;
+  margin-top: 80vh;
 }
 
 .svg-scroll-background svg {

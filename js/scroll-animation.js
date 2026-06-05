@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!svgContainer) return;
 
   const paths = svgContainer.querySelectorAll("svg path");
-  const scrollDuration = 400; // Dauer für jeden Pfad (endScroll - startScroll)
+  const scrollDuration = 550;
 
   paths.forEach(function (path, index) {
     const length = path.getTotalLength();
