@@ -11,6 +11,7 @@
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 /* ============================================
@@ -20,8 +21,7 @@ h1,
 .h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  margin-top: 5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   text-transform: uppercase;
   color: #cfcfcf;
 }
@@ -68,8 +68,8 @@ a:hover {
   position: relative;
   z-index: 1;
   padding: 2em;
-  padding-top: 6em;
-  padding-bottom: 6em;
+  padding-top: 10em;
+  padding-bottom: 12em;
 }
 
 @media screen and (min-width: 769px) {
@@ -327,7 +327,6 @@ a:hover {
   transform: translateX(-50%);
   margin-top: -1em;
   padding-top: 2em;
-  padding-bottom: 2em;
   z-index: 100;
 }
 
@@ -422,10 +421,10 @@ a:hover {
   left: 40%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
   z-index: 0;
   pointer-events: none;
-  margin-top: 80vh;
+  margin-top: 95vh;
 }
 
 .svg-scroll-background svg {
@@ -572,6 +571,84 @@ a:hover {
   justify-content: center;
 }
 
+/* ============================================
+   IMPRESSIONEN Gallery Slider
+   ============================================ */
+#impressionen .wp-block-gallery {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+}
+
+#impressionen .wp-block-gallery .wp-block-image {
+  flex: 0 0 calc(33.333% - 0.67rem);
+  transition: transform 0.4s ease;
+  position: absolute;
+  top: 0;
+}
+
+#impressionen .wp-block-gallery img {
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Pfeile über den Bildern */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.slider-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.slider-btn.prev {
+  left: 1rem;
+}
+
+.slider-btn.next {
+  right: 1rem;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-rose);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.slider-dot.active {
+  background: var(--color-plum);
+}
+
 #primary {
   position: relative;
 }
@@ -593,10 +670,6 @@ a:hover {
 
 .kontakt-text {
   padding: 0;
-}
-
-.kontakt-text h1 {
-  margin-top: 0 !important;
 }
 
 .kontakt-text p,
@@ -649,10 +722,5 @@ a:hover {
 
   .kontakt-text {
     padding: 0;
-  }
-
-  .kontakt-text h1 {
-    font-size: 1.8rem;
-    margin-top: 0;
   }
 }

@@ -18,7 +18,7 @@
   document.addEventListener("click", closeMenuOnOutside);
 
   // Fokus- und Touch-Handler für Menü-Links
-  const links = menu.getElementsByTagName("a");
+  const links = Array.from(menu.getElementsByTagName("a"));
   const submenuLinks = menu.querySelectorAll(
     ".menu-item-has-children > a, .page_item_has_children > a",
   );
@@ -68,4 +68,32 @@
       });
     }
   }
+
+  // Smooth Scroll für Navigationslinks
+  links.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+
+      // Nur für Anker-Links (#section)
+      if (!href || !href.includes("#")) return;
+
+      const targetId = href.split("#")[1];
+      const target = document.getElementById(targetId);
+
+      if (!target) return;
+
+      e.preventDefault();
+
+      // Mobil-Menü schliessen
+      if (siteNavigation.classList.contains("toggled")) {
+        siteNavigation.classList.remove("toggled");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
 })();

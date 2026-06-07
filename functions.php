@@ -30,3 +30,11 @@ function setup_theme() {
         'flex-height' => true,
     ));
 }
+
+wp_enqueue_script(
+  'slider',
+  get_template_directory_uri() . '/js/slider.js',
+  array(),
+  '1.0.0',
+  true
+);
