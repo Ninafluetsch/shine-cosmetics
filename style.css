@@ -305,27 +305,32 @@ a:hover {
 .block-wrapper.angebot-even {
   /* color: green; */
   width: 70%;
-  margin-top: 12rem;
+  margin-top: 8em;
+  margin-bottom: 15rem;
 }
 
 .block-wrapper.angebot-odd {
   /* color: red; */
   width: 70%;
   margin-left: auto;
-  margin-top: 12rem;
+  margin-top: 8em;
+  margin-bottom: 15rem;
 }
 
 /* ============================================
    ANGEBOT ITEMS (TOGGLE INHALTE)
    ============================================ */
-
+#angebot {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
 .angebot-item {
   background-color: var(--color-rose);
   position: relative;
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: -1em;
+  margin-top: -16em;
   padding-top: 2em;
   z-index: 100;
 }
@@ -370,6 +375,10 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.small-pb {
+  padding-bottom: 5em !important;
 }
 
 #image-loop {
@@ -421,7 +430,7 @@ a:hover {
   left: 40%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 950px;
+  max-width: 1000px;
   z-index: 0;
   pointer-events: none;
   margin-top: 95vh;

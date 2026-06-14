@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!svgContainer) return;
 
   const paths = svgContainer.querySelectorAll("svg path");
-  const scrollDuration = 550;
+  const scrollDuration = 400;
 
   paths.forEach(function (path, index) {
     const length = path.getTotalLength();
@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     path.style.strokeDashoffset = length;
 
     // Speichere die scroll-werte für jeden Pfad
-    path.dataset.startScroll = 400 + index * scrollDuration;
-    path.dataset.endScroll = 1000 + index * scrollDuration;
+    path.dataset.startScroll = 800 + index * scrollDuration;
+    path.dataset.endScroll = 1300 + index * scrollDuration;
   });
 
   window.addEventListener("scroll", function () {
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
       path.style.strokeDashoffset = length - drawLength;
     });
   });
-  // ✅ NEU: Recalculate scroll positions basierend auf aktueller Content-Höhe
   function updateScrollPositions() {
     let currentScroll = 400; // Start-Position (gleich wie oben)
     const svgSectionIds = ["face", "body", "legs", "hand-feet"];
@@ -45,13 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Berechne die Höhe des Content-Blocks
         const height = section ? section.offsetHeight : 0;
 
-        // ✅ Update die Scroll-Werte dynamisch
+        //Update die Scroll-Werte dynamisch
         path.dataset.startScroll = currentScroll;
         path.dataset.endScroll = currentScroll + scrollDuration;
-
-        console.log(
-          `📍 ${sectionId}: scroll ${currentScroll} - ${path.dataset.endScroll}, height: ${height}px`,
-        );
 
         currentScroll = parseInt(path.dataset.endScroll) + height;
       }
