@@ -1,20 +1,13 @@
-/**
- * Navigation-Menü Toggle und Fokusmanagement
- */
-
 (function () {
   const siteNavigation = document.getElementById("site-navigation");
   const menuToggle = document.querySelector(".menu-toggle");
   const menu = siteNavigation?.getElementsByTagName("ul")[0];
-
-  if (!siteNavigation || !menuToggle || !menu) return;
 
   menu.classList.add("nav-menu");
 
   // Toggle-Button für Mobile-Menü
   menuToggle.addEventListener("click", toggleMenu);
 
-  // Menü schließen beim Klick außerhalb
   document.addEventListener("click", closeMenuOnOutside);
 
   // Fokus- und Touch-Handler für Menü-Links
@@ -32,12 +25,14 @@
     link.addEventListener("touchstart", handleLinkFocus, false);
   });
 
+  // Öffnet/schliesst von mobile Menü
   function toggleMenu() {
     siteNavigation.classList.toggle("toggled");
     const isOpen = siteNavigation.classList.contains("toggled");
     menuToggle.setAttribute("aria-expanded", isOpen);
   }
 
+  // Schliesst das Menü, wenn ausserhalb von Nav/Button geklickt wird
   function closeMenuOnOutside(event) {
     const isClickInside =
       siteNavigation.contains(event.target) ||
@@ -69,12 +64,11 @@
     }
   }
 
-  // Smooth Scroll für Navigationslinks
+  // Smooth Scroll für Navigationslinks, die auf #anchor zeigen
   links.forEach((link) => {
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
 
-      // Nur für Anker-Links (#section)
       if (!href || !href.includes("#")) return;
 
       const targetId = href.split("#")[1];
@@ -84,7 +78,7 @@
 
       e.preventDefault();
 
-      // Mobil-Menü schliessen
+      // Mobil-Menü beim Klick auf einen Anker-Link schliessen
       if (siteNavigation.classList.contains("toggled")) {
         siteNavigation.classList.remove("toggled");
         menuToggle.setAttribute("aria-expanded", "false");

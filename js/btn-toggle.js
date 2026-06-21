@@ -1,8 +1,3 @@
-/**
- * Toggle-Angebote mit Slide- und Fade-Animation
- * Matched Posts mit Buttons und positioniert sie dahinter
- */
-
 document.addEventListener("DOMContentLoaded", initializeOffers);
 
 function initializeOffers() {
@@ -25,7 +20,7 @@ function setupOffer(item, buttons) {
   setupToggleListener(matchedButton, item);
 }
 
-// Sucht den Button, dessen Text mit dem Titel des Angebots übereinstimmt
+// Sucht den Button, wo Text mit dem Titel des Angebots übereinstimmt
 function findMatchingButton(buttons, itemTitle) {
   for (const btn of buttons) {
     if (btn.textContent.trim().toLowerCase() === itemTitle) {
@@ -35,17 +30,19 @@ function findMatchingButton(buttons, itemTitle) {
   return null;
 }
 
-// titel verstecken, da er ja schon im Button steht
+// Titel im Angebot-Block verstecken, da er schon im Button-Text steht
 function hideHeading(item) {
   const heading = item.querySelector("h1, h2, h3, h4, h5, h6");
   if (heading) heading.style.display = "none";
 }
 
+// Angebot-Block direkt hinter den zugehörigen Button verschieben
 function repositionItem(item, button) {
   const wrapper = button.closest(".wp-block-buttons") || button.parentElement;
   wrapper.insertAdjacentElement("afterend", item);
 }
 
+// Klick-Listener: öffnet/schliesst den Block
 function setupToggleListener(button, item) {
   button.addEventListener("click", (e) => {
     e.preventDefault();
@@ -55,7 +52,7 @@ function setupToggleListener(button, item) {
   });
 }
 
-// Animation: Item schließen
+// Animation: Block schliessen
 function closeItem(item, button) {
   item.style.maxHeight = item.scrollHeight + "px";
   item.style.overflow = "hidden";
@@ -81,7 +78,7 @@ function closeItem(item, button) {
   button.classList.remove("is-active");
 }
 
-// Animation: Item öffnen
+// Animation: Block öffnen
 function openItem(item, button) {
   item.style.display = "block";
   item.style.maxHeight = "0";

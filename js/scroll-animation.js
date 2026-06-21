@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     path.style.strokeDasharray = length;
     path.style.strokeDashoffset = length;
 
-    // Speichere die scroll-werte für jeden Pfad
     path.dataset.startScroll = 800 + index * scrollDuration;
     path.dataset.endScroll = 1300 + index * scrollDuration;
   });
 
+  //Fortschritt pro Pfad berechnen und Linie entsprechend zeichnen
   window.addEventListener("scroll", function () {
     const scrollY = window.scrollY;
 
@@ -30,26 +30,4 @@ document.addEventListener("DOMContentLoaded", function () {
       path.style.strokeDashoffset = length - drawLength;
     });
   });
-  function updateScrollPositions() {
-    let currentScroll = 400; // Start-Position (gleich wie oben)
-    const svgSectionIds = ["face", "body", "legs", "hand-feet"];
-
-    svgSectionIds.forEach((sectionId) => {
-      const path = document.getElementById(sectionId);
-      const section = document.querySelector(
-        `[data-svg-section="${sectionId}"]`,
-      );
-
-      if (path) {
-        // Berechne die Höhe des Content-Blocks
-        const height = section ? section.offsetHeight : 0;
-
-        //Update die Scroll-Werte dynamisch
-        path.dataset.startScroll = currentScroll;
-        path.dataset.endScroll = currentScroll + scrollDuration;
-
-        currentScroll = parseInt(path.dataset.endScroll) + height;
-      }
-    });
-  }
 });

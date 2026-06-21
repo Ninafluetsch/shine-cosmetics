@@ -5,20 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const slides = Array.from(gallery.querySelectorAll(".wp-block-image"));
   if (slides.length === 0) return;
 
-  const visibleCount = 3;
-  const gap = 16; // px, gleich wie gap im CSS
-  let current = 0;
+  const visibleCount = 3; // Anzahl gleichzeitig sichtbarer Bilder
+  const gap = 16; // px, muss mit dem gap im CSS übereinstimmen
+  let current = 0; // Index des aktuell ersten sichtbaren Bildes
 
   // Gallery als Slider-Container vorbereiten
   gallery.style.position = "relative";
   gallery.style.overflow = "hidden";
 
-  // Slide-Breite berechnen
+  // Breite eines einzelnen Slides berechnen (abhängig von Container-Breite)
   function getSlideWidth() {
     return (gallery.offsetWidth - gap * (visibleCount - 1)) / visibleCount;
   }
 
-  // Slides positionieren
+  // Alle Slides an ihre aktuelle Position schieben
   function positionSlides() {
     const slideWidth = getSlideWidth();
     slides.forEach((slide, i) => {
@@ -32,13 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.style.height = slides[0].offsetHeight + "px";
   }
 
+  // Springt zu einem bestimmten Slide-Index (mit Wrap-Around)
   function goTo(index) {
     current = ((index % slides.length) + slides.length) % slides.length;
     positionSlides();
     updateDots();
   }
 
-  // Pfeile erstellen – direkt im gallery Container
+  // Pfeil-Buttons erstellen und in Gallery einfügen
   const prevBtn = document.createElement("button");
   prevBtn.className = "slider-btn prev";
   prevBtn.innerHTML = "<";
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   gallery.appendChild(prevBtn);
   gallery.appendChild(nextBtn);
 
-  // Dots erstellen
+  // Dots (Positions-Anzeige) erstellen
   const dotsWrapper = document.createElement("div");
   dotsWrapper.className = "slider-dots";
   const dotCount = slides.length - visibleCount + 1;
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   gallery.parentNode.insertBefore(dotsWrapper, gallery.nextSibling);
 
+  // Aktiven Dot markieren
   function updateDots() {
     dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
   }
@@ -73,19 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
   prevBtn.addEventListener("click", () => goTo(current - 1));
   nextBtn.addEventListener("click", () => goTo(current + 1));
 
-  // Touch-Support
-  let touchStartX = 0;
-  gallery.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-  });
-  gallery.addEventListener("touchend", (e) => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? goTo(current + 1) : goTo(current - 1);
-    }
-  });
-
-  // Initial + Resize
+  // Initiale Positionierung
   positionSlides();
-  window.addEventListener("resize", positionSlides);
 });

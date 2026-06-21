@@ -7,8 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentBlock = null;
 
     children.forEach((child) => {
+      // Neue H1 gefunden → neuen Wrapper-Block starten
       if (child.tagName === "H1") {
         const number = parseInt(child.textContent.trim());
+
         if (!isNaN(number)) {
           currentBlock = document.createElement("div");
           currentBlock.className = "block-wrapper";
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           container.insertBefore(currentBlock, child);
 
-          // ← NEU: data-svg-section vom nächsten angebot-item übernehmen
+          // data-svg-section vom zugehörigen .angebot-item übernehmen,
           const nextItem = Array.from(container.children).find((el) =>
             el.classList.contains("angebot-item"),
           );
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
+      // .angebot-item bleibt direkt hinter dem Wrapper-Block stehen
       if (child.classList && child.classList.contains("angebot-item")) {
         container.insertBefore(child, currentBlock.nextSibling);
         return;

@@ -1,8 +1,4 @@
 <?php
-/**
- * Main Theme Template
- */
-
 get_header();
 ?>
 
@@ -73,7 +69,6 @@ get_header();
                     'posts_per_page' => -1
                 ));
 
-                //  Array mit den SVG-Section IDs
                 $svg_sections = array('face', 'body', 'legs', 'hand-feet');
                 $section_index = 0;
                 
@@ -81,11 +76,10 @@ get_header();
                     while ($angebot_query->have_posts()):
                         $angebot_query->the_post();
                         
-                        // Hole die aktuelle SVG-Section ID
                         $svg_section_id = isset($svg_sections[$section_index]) ? $svg_sections[$section_index] : '';
                         ?>
                         
-                        <!--  data-svg-section Attribute -->
+                        
                         <article
                             class='angebot-item'
                             data-title='<?php echo esc_attr(get_the_title()); ?>'
@@ -97,7 +91,7 @@ get_header();
                         </article>
                         
                         <?php
-                        $section_index++; // Nächste SVG-Section
+                        $section_index++;
                     endwhile;
                 endif;
                 wp_reset_postdata();
@@ -144,7 +138,7 @@ get_header();
             <div class="loop-item">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-3.png" alt="Bild 3" loading="lazy">
             </div>
-        <!-- Duplikate für nahtlosen Loop -->
+        <!-- Duplikate -->
             <div class="loop-item">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-1.png" alt="Bild 1" loading="lazy">
             </div>
@@ -154,7 +148,6 @@ get_header();
             <div class="loop-item">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-3.png" alt="Bild 3" loading="lazy">
             </div>
-            <!-- Weitere Duplikate für zusätzlichen Loop -->
             <div class="loop-item">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/produktlinie/produktlinie-img-1.png" alt="Bild 1" loading="lazy">
             </div>
@@ -243,7 +236,6 @@ get_header();
                         if (has_post_thumbnail()) {
                             the_post_thumbnail('large', array('class' => 'kontakt-mood-image'));
                         } else {
-                            // Fallback: Zeige das erste Bild aus dem Post an
                             $images = get_posts(array(
                                 'post_type' => 'attachment',
                                 'posts_per_page' => 1,
