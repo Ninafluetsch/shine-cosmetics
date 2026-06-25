@@ -2,6 +2,14 @@
 
 Individuelles WordPress-Theme für Shine Cosmetics.
 
+## WordPress-Zugangsdaten
+
+|                  |                                                           |
+| ---------------- | --------------------------------------------------------- |
+| **URL**          | https://shine-cosmetics.umuviwak.myhostpoint.ch/wp-admin/ |
+| **Benutzername** | shine-cosmetics                                           |
+| **Passwort**     | cosmetics-2025                                            |
+
 ## Aufbau
 
 ```

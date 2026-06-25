@@ -223,19 +223,7 @@ a:hover {
   text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
-  .main-navigation {
-    display: none;
-  }
-
-  .main-navigation ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 2rem;
-  }
-}
-
+/* Navigation-Breakpoint: ab 769px wird das Desktop-Menü angezeigt */
 @media screen and (min-width: 769px) {
   .menu-toggle {
     display: none;
@@ -515,13 +503,6 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.25em;
-}
-
-.contact-label {
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  color: var(--text-color);
 }
 
 .contact-item a {
