@@ -2,13 +2,7 @@
 
 Individuelles WordPress-Theme für Shine Cosmetics.
 
-## WordPress-Zugangsdaten
-
-|                  |                                                           |
-| ---------------- | --------------------------------------------------------- |
-| **URL**          | https://shine-cosmetics.umuviwak.myhostpoint.ch/wp-admin/ |
-| **Benutzername** | shine-cosmetics                                           |
-| **Passwort**     | cosmetics-2025                                            |
+[shine-cosmetics.umuviwak.myhostpoint.ch](https://shine-cosmetics.umuviwak.myhostpoint.ch)
 
 ## Aufbau
 
@@ -18,8 +12,6 @@ footer.php    → Footer mit Kontaktangaben, </body>
 functions.php → Hooks, Enqueues, Theme-Setup
 style.css     → einziges Stylesheet
 ```
-
-`functions.php` lädt `style.css` und alle JS-Dateien über `enqueue_assets()` (Hook: `wp_enqueue_scripts`):
 
 | Datei                 | Aufgabe                                                   |
 | --------------------- | --------------------------------------------------------- |
